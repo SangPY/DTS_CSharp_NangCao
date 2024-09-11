@@ -10,62 +10,88 @@ namespace DTS_CSharp_NangCap
         {
             #region Khởi tạo ArrayList
 
-            ArrayList arrayList = new ArrayList(); // Khởi tạo 1 arraylist rỗng
+            //ArrayList arrayList = new ArrayList(); // Khởi tạo 1 arraylist rỗng
 
-            ArrayList arrayList2 = new ArrayList(5); //Khởi tạo 1 arraylist và chỉ định capacity ban đầu là 5
+            //ArrayList arrayList2 = new ArrayList(5); //Khởi tạo 1 arraylist và chỉ định capacity ban đầu là 5
 
-            /* Khởi tạo 1 arraylist có kích thường bằng arrayList2
-            * Sao chép toàn bộ phần tử trong arrayList2 vào arrayList3
-            * 2 thằng khác vùng nhớ nên thay đổi k ảnh hưởng
-            */
-            ArrayList arrayList3 = new ArrayList(arrayList2);
+            ///* Khởi tạo 1 arraylist có kích thường bằng arrayList2
+            //* Sao chép toàn bộ phần tử trong arrayList2 vào arrayList3
+            //* 2 thằng khác vùng nhớ nên thay đổi k ảnh hưởng
+            //*/
+            //ArrayList arrayList3 = new ArrayList(arrayList2);
 
-            /*
-             * Kiểu dữ liệu tham chiếu.
-             * Array4 tham  chiếu tới giá trị tới array2
-             * 2 thằng cùng chỉ, trỏ đến 1 giá trị của bộ nhớ nên khi 1 thằng thay đổi, thằng kia sẽ thay đổi theo.
-             * array4 thay đổi thì array2 nhận giá trị thay đổi đó, và ngược lại
-             */
-            ArrayList arrayList4 = arrayList2;
+            ///*
+            // * Kiểu dữ liệu tham chiếu.
+            // * Array4 tham  chiếu tới giá trị tới array2
+            // * 2 thằng cùng chỉ, trỏ đến 1 giá trị của bộ nhớ nên khi 1 thằng thay đổi, thằng kia sẽ thay đổi theo.
+            // * array4 thay đổi thì array2 nhận giá trị thay đổi đó, và ngược lại
+            // */
+            //ArrayList arrayList4 = arrayList2;
 
             #endregion Khởi tạo ArrayList
 
-            #region Sắp xếp
+            #region Sắp xếp ArrayList
 
-            // Tạo ds rỗng
-            ArrayList arrPersons = new ArrayList();
+            //// Tạo ds rỗng
+            //ArrayList arrPersons = new ArrayList();
 
-            // Thêm phần tử vào ds
-            arrPersons.Add(new Person("Do Thanh Sang", 29));
-            arrPersons.Add(new Person("Nguyen Van B", 34));
-            arrPersons.Add(new Person("Le van C", 23));
-            arrPersons.Add(new Person("Ho van D", 37));
+            //// Thêm phần tử vào ds
+            //arrPersons.Add(new Person("Do Thanh Sang", 29));
+            //arrPersons.Add(new Person("Nguyen Van B", 34));
+            //arrPersons.Add(new Person("Le van C", 23));
+            //arrPersons.Add(new Person("Ho van D", 37));
 
-            //In thử ds ra màn hình
-            Console.WriteLine("Danh sach Person ban dau: ");
-            foreach (Person person in arrPersons)
+            ////In thử ds ra màn hình
+            //Console.WriteLine("Danh sach Person ban dau: ");
+            //foreach (Person person in arrPersons)
+            //{
+            //    Console.WriteLine(person.ToString());
+            //}
+
+            ///*
+            // * Thực hiện sắp xếp
+            // * Trong phướng thức Compare của lớp SortPerson (tuổi tăng dần)
+            // */
+
+            //arrPersons.Sort(new SortPersons());
+
+            //// In ra màn hình kq
+            //Console.WriteLine();
+            //Console.WriteLine("Danh sach Person duoc tra ve theo kieu tang dan: ");
+            //foreach (Person person in arrPersons)
+            //{
+            //    Console.WriteLine(person.ToString());
+            //}
+
+            #endregion Sắp xếp ArrayList
+
+            #region Khởi tạo HashTable
+
+            Hashtable hashtable = new Hashtable(5);
+
+            //Thêm dữ liệu
+            hashtable.Add("K", "Kteam");
+            hashtable.Add("S", "SangDT");
+            hashtable.Add("N", "NganVo");
+
+            #endregion Khởi tạo HashTable
+
+            #region Lưu ý HashTable
+
+            //In tất cả phần tử theo key-value
+            foreach (DictionaryEntry item in hashtable)
             {
-                Console.WriteLine(person.ToString());
+                // Add phần từ vào nên tự động sắp xếp luôn.
+                Console.WriteLine(item.Key + "\t" + item.Value);
             }
 
-            /*
-             * Thực hiện sắp xếp
-             * Trong phướng thức Compare của lớp SortPerson (tuổi tăng dần)
-             */
+            // In theo Key với giá trị mong muốn
+            // Mảng bt theo xuất theo Index, HashTable truy xuất theo Key
+            Console.WriteLine(hashtable["S"]);
 
-            arrPersons.Sort(new SortPersons());
+            #endregion Lưu ý HashTable
 
-            // In ra màn hình kq
-            Console.WriteLine();
-            Console.WriteLine("Danh sach Person duoc tra ve theo kieu tang dan: ");
-            foreach (Person person in arrPersons)
-            {
-                Console.WriteLine(person.ToString());
-            }
-
-            #endregion Sắp xếp
-
-            Console.WriteLine("Hello World!");
+            //Console.WriteLine("Hello World!");
         }
 
         public class SortPersons : IComparer
