@@ -1,6 +1,7 @@
 ﻿using DTS_CSharp_NangCao;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace DTS_CSharp_NangCap
 {
@@ -67,31 +68,99 @@ namespace DTS_CSharp_NangCap
 
             #region Khởi tạo HashTable
 
-            Hashtable hashtable = new Hashtable(5);
+            //Hashtable hashtable = new Hashtable(5);
 
-            //Thêm dữ liệu
-            hashtable.Add("K", "Kteam");
-            hashtable.Add("S", "SangDT");
-            hashtable.Add("N", "NganVo");
+            ////Thêm dữ liệu
+            //hashtable.Add("K", "Kteam");
+            //hashtable.Add("S", "SangDT");
+            //hashtable.Add("N", "NganVo");
 
             #endregion Khởi tạo HashTable
 
             #region Lưu ý HashTable
 
             //In tất cả phần tử theo key-value
-            foreach (DictionaryEntry item in hashtable)
-            {
-                // Add phần từ vào nên tự động sắp xếp luôn.
-                Console.WriteLine(item.Key + "\t" + item.Value);
-            }
+            //foreach (DictionaryEntry item in hashtable)
+            //{
+            //    // Add phần từ vào nên tự động sắp xếp luôn.
+            //    Console.WriteLine(item.Key + "\t" + item.Value);
+            //}
 
-            // In theo Key với giá trị mong muốn
-            // Mảng bt theo xuất theo Index, HashTable truy xuất theo Key
-            Console.WriteLine(hashtable["S"]);
+            //// In theo Key với giá trị mong muốn
+            //// Mảng bt theo xuất theo Index, HashTable truy xuất theo Key
+            //Console.WriteLine(hashtable["S"]);
 
             #endregion Lưu ý HashTable
 
-            //Console.WriteLine("Hello World!");
+            #region Khởi tạo SortedList
+
+            // Là 1 SortedList giống như Hashtable, các giá trị được sắp xếp theo Key. Khi được add vào sẽ được sắp xếp theo Key.
+            // Là sự kết hợp giữa ArrayList và HashTable
+            SortedList sortedList2 = new SortedList(5);
+
+            /* Khởi tạo 1 SoertedList có kích thường bằng sortedList2
+            * Sao chép toàn bộ phần tử trong sortedList vào sortedList3
+            * 2 thằng khác vùng nhớ nên thay đổi k ảnh hưởng
+            */
+            SortedList sortedList3 = new SortedList(sortedList2);
+
+            /*
+             * Định nghĩa 1 lớp PersonComparer có thực thi 1 interface Icomparer
+             * Sau đó override lại phương thức Comparer
+             * Sử dụng lớp trên để truyền lại vào constructor của SortedList
+             */
+            SortedList sortedList4 = new SortedList(new PersonComparer());
+
+            /*
+             * Tạo 1 ShortedList mới và sao chép các phần tử từ sortedList3 đồng thời sắp xếp các phần từ còn lại
+             * Theo cách sắp xếp được định nghĩa trong lớp PersonComparer
+             */
+            SortedList sortedList5 = new SortedList(sortedList3, new PersonComparer());
+
+            #endregion Khởi tạo SortedList
+
+            #region Sắp xếp SortedList
+
+            sortedList4.Add(new Person("Sang", 20), 25);
+            sortedList4.Add(new Person("HongAn", 12), 28);
+            sortedList4.Add(new Person("Ngan", 27), 15);
+
+            foreach (DictionaryEntry item in sortedList4)
+            {
+                Console.WriteLine("Key: " + item.Key + "\tVale: " + item.Value);
+            }
+
+            #endregion Sắp xếp SortedList
+        }
+
+        public class PersonComparer : IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                // Ép kiểu 2 object truyền vào về Persin
+                Person a = x as Person;
+                Person b = y as Person;
+
+                if (a == null || b == null)
+                {
+                    throw new InvalidOperationException();
+                }
+                else
+                {
+                    if (a.Age > b.Age)
+                    {
+                        return 1;
+                    }
+                    else if (a.Age == b.Age)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+                }
+            }
         }
 
         public class SortPersons : IComparer
