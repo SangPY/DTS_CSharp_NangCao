@@ -148,35 +148,70 @@ namespace DTS_CSharp_NangCap
             #region Sắp xếp, thuộc tính Stack
 
             // Tạo 1 Stack rỗng
-            Stack MyStack4 = new Stack();
+            //Stack MyStack4 = new Stack();
 
-            // Thực hiện thêm vài phần tử vào Stack thông qua hàm Push.
-            MyStack4.Push("Education");
-            MyStack4.Push("Free");
-            MyStack4.Push("HowKteam");
+            //// Thực hiện thêm vài phần tử vào Stack thông qua hàm Push.
+            //MyStack4.Push("Education");
+            //MyStack4.Push("Free");
+            //MyStack4.Push("HowKteam");
 
-            // Thử sử dụng các phương thức của Stack.
-            Console.WriteLine(" So phan tu hien tai cua Stack la: {0}", MyStack4.Count);
+            //// Thử sử dụng các phương thức của Stack.
+            //Console.WriteLine(" So phan tu hien tai cua Stack la: {0}", MyStack4.Count);
 
-            // Lưu ý ở đây ta chỉ muốn xem giá trị mà không muốn nó khỏi Stack thì ta sẽ dùng Peek.
-            Console.WriteLine(" Phan tu dau cua Stack la: {0}", MyStack4.Peek());
+            //// Lưu ý ở đây ta chỉ muốn xem giá trị mà không muốn nó khỏi Stack thì ta sẽ dùng Peek.
+            //Console.WriteLine(" Phan tu dau cua Stack la: {0}", MyStack4.Peek());
 
-            // Thử kiểm tra lại số phần tử để chắc chắn rằng hàm Peek không xoá phần tử ra khỏi Stack.
-            Console.WriteLine(" So phan tu cua Stack sau khi goi ham Peek: {0}", MyStack4.Count);
+            //// Thử kiểm tra lại số phần tử để chắc chắn rằng hàm Peek không xoá phần tử ra khỏi Stack.
+            //Console.WriteLine(" So phan tu cua Stack sau khi goi ham Peek: {0}", MyStack4.Count);
 
-            // Thực hiện xoá các phần tử ra khỏi Stack.
+            //// Thực hiện xoá các phần tử ra khỏi Stack.
+            //Console.WriteLine(" Popping...");
+            //int Length = MyStack4.Count;
+            //for (int i = 0; i < Length; i++)
+            //{
+            //    Console.Write(" " + MyStack4.Pop());
+            //}
+            //Console.WriteLine();
+
+            //// Kiểm tra lại số phần tử của Stack sau khi Pop
+            //Console.WriteLine(" So phan tu cua Stack sau khi Pop la: {0}", MyStack4.Count);
+
+            #endregion Sắp xếp, thuộc tính Stack
+
+            #region Tạo và sắp xếp Queue
+
+            Queue queue = new Queue();
+
+            // Tạo 1 Queue rỗng
+            Queue MyQueue4 = new Queue();
+
+            // Thực hiện thêm vài phần tử vào Queue thông qua hàm Enqueue.
+            MyQueue4.Enqueue("HowKteam");
+            MyQueue4.Enqueue("Free");
+            MyQueue4.Enqueue("Education");
+
+            // Thử sử dụng các phương thức của Queue.
+            Console.WriteLine(" So phan tu hien tai cua Queue la: {0}", MyQueue4.Count);
+
+            // Lưu ý ở đây ta chỉ muốn xem giá trị mà không muốn nó khỏi Queue thì ta sẽ dùng Peek.
+            Console.WriteLine(" Phan tu dau cua Queue la: {0}", MyQueue4.Peek());
+
+            // Thử kiểm tra lại số phần tử để chắc chắn rằng hàm Peek không xoá phần tử ra khỏi Queue.
+            Console.WriteLine(" So phan tu cua Queue sau khi goi ham Peek: {0}", MyQueue4.Count);
+
+            // Thực hiện xoá các phần tử ra khỏi Queue thông qua hàm Dequeue.
             Console.WriteLine(" Popping...");
-            int Length = MyStack4.Count;
+            int Length = MyQueue4.Count;
             for (int i = 0; i < Length; i++)
             {
-                Console.Write(" " + MyStack4.Pop());
+                Console.Write(" " + MyQueue4.Dequeue());
             }
             Console.WriteLine();
 
-            // Kiểm tra lại số phần tử của Stack sau khi Pop
-            Console.WriteLine(" So phan tu cua Stack sau khi Pop la: {0}", MyStack4.Count);
+            // Kiểm tra lại số phần tử của Queue sau khi Pop
+            Console.WriteLine(" So phan tu cua Queue sau khi Pop la: {0}", MyQueue4.Count);
 
-            #endregion Sắp xếp, thuộc tính Stack
+            #endregion Tạo và sắp xếp Queue
         }
 
         public class PersonComparer : IComparer
