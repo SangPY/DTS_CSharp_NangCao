@@ -310,16 +310,16 @@ namespace DTS_CSharp_NangCap
             #region Dictionary
 
             //Dictionary chính là sự thay thế cho Collections Hashtable đã được học.
-            Dictionary<string, string> dic = new Dictionary<string, string>();
+            //Dictionary<string, string> dic = new Dictionary<string, string>();
 
-            dic.Add("Sang", "Do thanh sang");
-            dic.Add("An", "Do thanh Hong An");
-            dic.Add("Ngan", "Do vo thanh ngan");
+            //dic.Add("Sang", "Do thanh sang");
+            //dic.Add("An", "Do thanh Hong An");
+            //dic.Add("Ngan", "Do vo thanh ngan");
 
-            foreach (KeyValuePair<string, string> item in dic)
-            {
-                Console.WriteLine(item.Key + "\t" + item.Value);
-            }
+            //foreach (KeyValuePair<string, string> item in dic)
+            //{
+            //    Console.WriteLine(item.Key + "\t" + item.Value);
+            //}
 
             // Trùng Key báo lỗi
 
@@ -343,6 +343,36 @@ namespace DTS_CSharp_NangCap
              */
 
             #endregion Dictionary
+
+            #region Tuple
+
+            //Tuple là một kiểu dữ liệu có cấu trúc, giúp lưu trữ các dữ liệu phức tạp mà không cần phải tạo ra một struct hay class mới
+            var MyTyple = Tuple.Create<int, string>(1, "DTS");
+            Console.WriteLine(MyTyple);
+
+            // Khởi tạo Tuple thông qua constructor của các lớp generic
+            var MyTuple2 = new Tuple<int, string>(2, "Kteam");
+
+            /*
+             * Mình dùng var để C# tự nhận diện kiểu dữ liệu.
+             * Bạn có thể khai báo tường minh kiểu dữ liệu là Tuple<int, int, int>
+             */
+
+            var now = GetCurrentDayMonthYear();
+            Console.WriteLine(" Day: {0}, Month: {1}, Year: {2}", now.Item1, now.Item2, now.Item3);
+
+            #endregion Tuple
+        }
+
+        /// <summary>
+        /// Phương thức trả về 1 Tuple có 3 thuộc tính (cả 3 đều có kiểu dữ liệu là int)
+        /// </summary>
+        /// <returns></returns>
+        private static Tuple<int, int, int> GetCurrentDayMonthYear()
+        {
+            DateTime now = DateTime.Now; // lấy ngày giờ hiện tại của hệ thống.
+            /* Sử dụng Constructor của Tuple<> để trả về hoặc có thể sử dụng phương thức Create đã trình bày ở trên. */
+            return new Tuple<int, int, int>(now.Day, now.Month, now.Year);
         }
 
         // Dùng Generic
