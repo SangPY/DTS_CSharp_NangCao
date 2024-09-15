@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using static DTS_CSharp_NangCap.Program.SinhVien;
 
 namespace DTS_CSharp_NangCap
 {
@@ -400,20 +401,83 @@ namespace DTS_CSharp_NangCap
             #region Event Delegate
 
             //a
-            HocSinh hocSinh = new HocSinh();
-            hocSinh.NameChanged += HocSinh_NameChanged;
+            //HocSinh hocSinh = new HocSinh();
+            //hocSinh.NameChanged += HocSinh_NameChanged;
 
-            hocSinh.Name = "Test";
-            Console.WriteLine("Tên từ class: " + hocSinh.Name);
-            hocSinh.Name = "HowKteam.com";
-            Console.WriteLine("Tên từ class: " + hocSinh.Name);
+            //hocSinh.Name = "Test";
+            //Console.WriteLine("Tên từ class: " + hocSinh.Name);
+            //hocSinh.Name = "HowKteam.com";
+            //Console.WriteLine("Tên từ class: " + hocSinh.Name);
 
             #endregion Event Delegate
+
+            #region Event chuan .Net
+
+            /*
+             * Event chuẩn .Net là event với Delegate nhưng thỏa mãn các điều kiện:
+             * Delegate có kiểu trả về là void
+             * Delegate có hai tham số, tham số thứ nhất có kiểu dữ liệu là object, tham số thứ hai có kiểu EventArgs. object chính là đối tượng phát sinh sự kiện, EventArgs chính là class giữ thông tin mà đối tượng gửi kèm trong quá trình phát sinh sự kiện.
+             * Lúc này thay vì chúng ta dùng Delegate do chúng ta tự tạo thì .Net có sẵn Delegate tên là EventHandler theo chuẩn ở trên.
+             */
+            SinhVien sinhVien = new SinhVien();
+            sinhVien.NameChange += SinhVien_NameChange;
+
+            sinhVien.Name = "Thay đổi lần 1";
+            sinhVien.Name = "Thay đổi lần 2";
+            sinhVien.Name = "Thay đổi lần 3";
+
+            #endregion Event chuan .Net
+        }
+
+        private static void SinhVien_NameChange(object sender, NameChangedEventArgs e)
+        {
+            Console.WriteLine("Tên có thay đổi: " + e.Name);
         }
 
         private static void HocSinh_NameChanged(string name)
         {
             Console.WriteLine("Tên mới: " + name);
+        }
+
+        public class SinhVien
+        {
+            private string _Name;
+
+            public string Name
+            {
+                get => _Name;
+                set
+                {
+                    _Name = value;
+                    OnNameChange(value);
+                }
+            }
+
+            public event EventHandler<NameChangedEventArgs> _NameChanged;
+
+            public event EventHandler<NameChangedEventArgs> NameChange
+            {
+                add => _NameChanged += value;
+                remove => _NameChanged -= value;
+            }
+
+            private void OnNameChange(string name)
+            {
+                if (_NameChanged != null)
+                {
+                    _NameChanged(this, new NameChangedEventArgs(name));
+                }
+            }
+        }
+
+        public class NameChangedEventArgs : EventArgs
+        {
+            public string Name { get; set; }
+
+            public NameChangedEventArgs(string name)
+            {
+                Name = name;
+            }
         }
 
         public class HocSinh
