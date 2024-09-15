@@ -11,8 +11,12 @@ namespace DTS_CSharp_NangCap
     {
         private delegate int MyDelegate(string s);
 
+        public delegate void UpdateNameHandler(string name);
+
         private static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.Unicode;
+
             #region Khởi tạo ArrayList
 
             //ArrayList arrayList = new ArrayList(); // Khởi tạo 1 arraylist rỗng
@@ -380,20 +384,56 @@ namespace DTS_CSharp_NangCap
              * Delegate thường được dùng để triển khai các phương thức hoặc sự kiện call-back.
              */
 
-            Console.OutputEncoding = Encoding.Unicode;
-
             //MyDelegate convertToInt = new MyDelegate(ConvertStringToInt);
             //string numberSTR = "35";
             //int valueConverted = convertToInt(numberSTR);
             //Console.WriteLine("Giá trị đã convert thành int: " + valueConverted);
             // Thay vì gọi hàm thì gán biến bằng hàm, và gọi biến đó thôi. hiểu delegate là như vậy
 
-            MyDelegate showString = new MyDelegate(ShowString);
+            //MyDelegate showString = new MyDelegate(ShowString);
 
-            NhapVaShowTen(showString);
+            //NhapVaShowTen(showString);
             // Ví dụ callback
 
             #endregion Delegate
+
+            #region Event Delegate
+
+            //a
+            HocSinh hocSinh = new HocSinh();
+            hocSinh.NameChanged += HocSinh_NameChanged;
+
+            hocSinh.Name = "Test";
+            Console.WriteLine("Tên từ class: " + hocSinh.Name);
+            hocSinh.Name = "HowKteam.com";
+            Console.WriteLine("Tên từ class: " + hocSinh.Name);
+
+            #endregion Event Delegate
+        }
+
+        private static void HocSinh_NameChanged(string name)
+        {
+            Console.WriteLine("Tên mới: " + name);
+        }
+
+        public class HocSinh
+        {
+            public event UpdateNameHandler NameChanged;
+
+            private string _Name;
+
+            public string Name
+            {
+                get => _Name;
+                set
+                {
+                    _Name = value;
+                    if (NameChanged != null)
+                    {
+                        NameChanged(Name);
+                    }
+                }
+            }
         }
 
         private static void NhapVaShowTen(MyDelegate showTen)
