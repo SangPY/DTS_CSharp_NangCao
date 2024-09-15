@@ -3,11 +3,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
 namespace DTS_CSharp_NangCap
 {
     internal class Program
     {
+        private delegate int MyDelegate(string s);
+
         private static void Main(string[] args)
         {
             #region Khởi tạo ArrayList
@@ -368,6 +371,52 @@ namespace DTS_CSharp_NangCap
             // ICollection là một interface trong bộ các interface được định nghĩa sẵn của.NET Framework.
 
             #endregion ICollection
+
+            #region Delegate
+
+            /*Delegate trong C# tương tự như con trỏ hàm trong C hoặc C++.
+             * Delegate là một biến kiểu tham chiếu(references) chứa tham chiếu tới một phương thức.
+             * Tham chiếu của Delegate có thể thay đổi runtime (khi chương trình đang thực thi).
+             * Delegate thường được dùng để triển khai các phương thức hoặc sự kiện call-back.
+             */
+
+            Console.OutputEncoding = Encoding.Unicode;
+
+            //MyDelegate convertToInt = new MyDelegate(ConvertStringToInt);
+            //string numberSTR = "35";
+            //int valueConverted = convertToInt(numberSTR);
+            //Console.WriteLine("Giá trị đã convert thành int: " + valueConverted);
+            // Thay vì gọi hàm thì gán biến bằng hàm, và gọi biến đó thôi. hiểu delegate là như vậy
+
+            MyDelegate showString = new MyDelegate(ShowString);
+
+            NhapVaShowTen(showString);
+            // Ví dụ callback
+
+            #endregion Delegate
+        }
+
+        private static void NhapVaShowTen(MyDelegate showTen)
+        {
+            Console.WriteLine("Mời nhập tên của bạn:");
+            string ten = Console.ReadLine();
+            showTen(ten);
+        }
+
+        private static int ConvertStringToInt(string stringValue)
+        {
+            int valueInt = 0;
+
+            Int32.TryParse(stringValue, out valueInt);
+            Console.WriteLine("Đã ép kiểu dữ liệu thành công");
+
+            return valueInt;
+        }
+
+        private static int ShowString(string stringValue)
+        {
+            Console.WriteLine(stringValue);
+            return 0;
         }
 
         public void Sort(IComparer comparer)
