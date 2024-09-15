@@ -219,18 +219,47 @@ namespace DTS_CSharp_NangCap
             * Khởi tạo 1 BitArray có 10 phần tử.
             * Mỗi phần tử có giá trị mặc định 0 (false).
             */
-            BitArray bitArray = new BitArray(10);
+            // BitArray bitArray = new BitArray(10);
 
             // Muốn mặc định bằng flase
-            BitArray bitArray1 = new BitArray(10, true);
+            //BitArray bitArray1 = new BitArray(10, true);
 
             /*
             * Khởi tạo 1 BitArray từ một mảng bool có sẵn.
             */
-            bool[] mybools = new bool[5] { true, false, true, true, false };
-            BitArray bitArray2 = new BitArray(mybools);
+            // bool[] mybools = new bool[5] { true, false, true, true, false };
+            // BitArray bitArray2 = new BitArray(mybools);
 
             #endregion Khởi tạo BitArray
+
+            #region Generic
+
+            /*
+             * Generic trong C# cho phép bạn định nghĩa một hàm, một lớp mà không cần chỉ ra đối số kiểu dữ liệu là gì.
+             * Tuỳ vào kiểu dữ liệu mà người dùng truyền vào thì nó sẽ hoạt động theo kiểu dữ liệu đó.
+             */
+            int a = 5, b = 7;
+            double c = 1.2, d = 5.6;
+
+            Swap<int>(ref a, ref b);
+            Swap<double>(ref c, ref d);
+
+            Console.WriteLine($"{a}, {b}, {c}, {d}");
+
+            // Khởi tạo 1 mảng số nguyên kiểu int có 5 phần tử
+            MyGeneric<int> MyG = new MyGeneric<int>(5);
+
+            MyG.SetItemValue(0, 10);
+
+            #endregion Generic
+        }
+
+        // Dùng Generic
+        public static void Swap<T>(ref T a, ref T b)
+        {
+            T temp = a;
+            a = b;
+            b = temp;
         }
 
         public class PersonComparer : IComparer
