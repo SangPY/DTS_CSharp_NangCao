@@ -238,20 +238,73 @@ namespace DTS_CSharp_NangCap
              * Generic trong C# cho phép bạn định nghĩa một hàm, một lớp mà không cần chỉ ra đối số kiểu dữ liệu là gì.
              * Tuỳ vào kiểu dữ liệu mà người dùng truyền vào thì nó sẽ hoạt động theo kiểu dữ liệu đó.
              */
-            int a = 5, b = 7;
-            double c = 1.2, d = 5.6;
+            //int a = 5, b = 7;
+            //double c = 1.2, d = 5.6;
 
-            Swap<int>(ref a, ref b);
-            Swap<double>(ref c, ref d);
+            //Swap<int>(ref a, ref b);
+            //Swap<double>(ref c, ref d);
 
-            Console.WriteLine($"{a}, {b}, {c}, {d}");
+            //Console.WriteLine($"{a}, {b}, {c}, {d}");
 
-            // Khởi tạo 1 mảng số nguyên kiểu int có 5 phần tử
-            MyGeneric<int> MyG = new MyGeneric<int>(5);
+            //// Khởi tạo 1 mảng số nguyên kiểu int có 5 phần tử
+            //MyGeneric<int> MyG = new MyGeneric<int>(5);
 
-            MyG.SetItemValue(0, 10);
+            //MyG.SetItemValue(0, 10);
 
             #endregion Generic
+
+            #region List
+
+            List<string> list = new List<string>();
+
+            List<int> list2 = new List<int>(5);
+
+            /*
+            * Khởi tạo 1 List số nguyên có kích thước bằng với MyList2.
+            * Sao chép toàn độ phần tử trong MyList2 vào MyList3.
+            * Tạo ra vùng nhớ riêng biệt
+            */
+            List<int> list3 = new List<int>(list2);
+
+            /*
+            * Tạo 1 List các kiểu string và thêm 2 phần tử vào List.
+            */
+            List<string> list4 = new List<string>();
+            list4.Add("Free");
+            list4.Add("Education");
+
+            // In giá trị các phần tử trong List
+            Console.WriteLine(" List ban dau: ");
+            Console.WriteLine(" So luong phan tu trong List la: {0}", list4.Count);
+            foreach (string item in list4)
+            {
+                Console.Write(" " + item);
+            }
+            Console.WriteLine();
+
+            // Chèn 1 phần tử vào đầu List.
+            list4.Insert(0, "HowKteam");
+
+            // In lại giá trị các phần tử trong List để xem đã chèn được hay chưa
+            Console.WriteLine(" List sau khi insert: ");
+            Console.WriteLine(" So luong phan tu trong List la: {0}", list4.Count);
+            foreach (string item in list4)
+            {
+                Console.Write(" " + item);
+            }
+            Console.WriteLine();
+
+            // Kiểm tra 1 phần tử có tồn tại trong List hay không.
+            bool isExists = list4.Contains("Kteam");
+
+            if (isExists == false)
+            {
+                Console.WriteLine(" Khong tim thay chuoi Kteam trong List");
+            }
+
+            //HowKteam là sẽ có -- dùng else để hiển thị
+
+            #endregion List
         }
 
         // Dùng Generic
