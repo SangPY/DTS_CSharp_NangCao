@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using static DTS_CSharp_NangCap.Program.SinhVien;
+using System.Threading;
 
 namespace DTS_CSharp_NangCap
 {
@@ -419,14 +420,51 @@ namespace DTS_CSharp_NangCap
              * Delegate có hai tham số, tham số thứ nhất có kiểu dữ liệu là object, tham số thứ hai có kiểu EventArgs. object chính là đối tượng phát sinh sự kiện, EventArgs chính là class giữ thông tin mà đối tượng gửi kèm trong quá trình phát sinh sự kiện.
              * Lúc này thay vì chúng ta dùng Delegate do chúng ta tự tạo thì .Net có sẵn Delegate tên là EventHandler theo chuẩn ở trên.
              */
-            SinhVien sinhVien = new SinhVien();
-            sinhVien.NameChange += SinhVien_NameChange;
+            //SinhVien sinhVien = new SinhVien();
+            //sinhVien.NameChange += SinhVien_NameChange;
 
-            sinhVien.Name = "Thay đổi lần 1";
-            sinhVien.Name = "Thay đổi lần 2";
-            sinhVien.Name = "Thay đổi lần 3";
+            //sinhVien.Name = "Thay đổi lần 1";
+            //sinhVien.Name = "Thay đổi lần 2";
+            //sinhVien.Name = "Thay đổi lần 3";
 
             #endregion Event chuan .Net
+
+            #region MultiThread
+
+            /*
+             *Multi threading có thể hiểu là một kỹ thuật để cùng một lúc xử lý nhiều tác vụ.
+             *Bản chất chương trình C# được tạo ra sẽ có hai luồng chạy chính.
+             *Luồng thứ nhất là MainThread(luồng chính của chương trình mặc định là hàm Main) và UIThread(luồng cập nhật giao diện).
+             */
+
+            for (int i = 0; i < 5; i++)
+            {
+                int tempI = i;
+                Thread t = new Thread(() =>
+                {
+                    DemoThread("Thread " + tempI);
+
+                    // Invoke cần một đối tượng giao diện để Invoke. Ở đây mình dùng this là form hiện tại.
+                    // Bạn có thể dùng control bất kỳ thay thế
+                    //Invoke(new Action(() =>
+                    //{
+                    //    // code của bạn
+                    //}));
+                });
+                t.IsBackground = true; // tắt chương trình, thread sẽ được giải phóng liền
+                t.Start();
+            }
+
+            #endregion MultiThread
+        }
+
+        private static void DemoThread(string threadIndex)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                Console.WriteLine(threadIndex + " - " + i);
+            }
         }
 
         private static void SinhVien_NameChange(object sender, NameChangedEventArgs e)
