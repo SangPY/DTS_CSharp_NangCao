@@ -347,21 +347,50 @@ namespace DTS_CSharp_NangCap
             #region Tuple
 
             //Tuple là một kiểu dữ liệu có cấu trúc, giúp lưu trữ các dữ liệu phức tạp mà không cần phải tạo ra một struct hay class mới
-            var MyTyple = Tuple.Create<int, string>(1, "DTS");
-            Console.WriteLine(MyTyple);
+            //var MyTyple = Tuple.Create<int, string>(1, "DTS");
+            //Console.WriteLine(MyTyple);
 
-            // Khởi tạo Tuple thông qua constructor của các lớp generic
-            var MyTuple2 = new Tuple<int, string>(2, "Kteam");
+            //// Khởi tạo Tuple thông qua constructor của các lớp generic
+            //var MyTuple2 = new Tuple<int, string>(2, "Kteam");
 
-            /*
-             * Mình dùng var để C# tự nhận diện kiểu dữ liệu.
-             * Bạn có thể khai báo tường minh kiểu dữ liệu là Tuple<int, int, int>
-             */
+            ///*
+            // * Mình dùng var để C# tự nhận diện kiểu dữ liệu.
+            // * Bạn có thể khai báo tường minh kiểu dữ liệu là Tuple<int, int, int>
+            // */
 
-            var now = GetCurrentDayMonthYear();
-            Console.WriteLine(" Day: {0}, Month: {1}, Year: {2}", now.Item1, now.Item2, now.Item3);
+            //var now = GetCurrentDayMonthYear();
+            //Console.WriteLine(" Day: {0}, Month: {1}, Year: {2}", now.Item1, now.Item2, now.Item3);
 
             #endregion Tuple
+
+            #region ICollection
+
+            // ICollection là một interface trong bộ các interface được định nghĩa sẵn của.NET Framework.
+
+            #endregion ICollection
+        }
+
+        public void Sort(IComparer comparer)
+        {
+            /* Mình sử dụng thuật toán sắp xếp đơn giản nhất nhé.
+            * Còn thực sự hàm Sort của .NET sử dụng thuật toán khác nha.
+            */
+            ArrayList array = new ArrayList();
+
+            int count = array.Count;
+            for (int i = 0; i < count - 1; i++)
+            {
+                for (int j = i + 1; j < count; j++)
+                {
+                    /* Nếu phần tử i bé hơn phần tử j thì thực hiện hoán đổi vị trí 2 phần tử này */
+                    if (comparer.Compare(array[i], array[j]) > 0)
+                    {
+                        object tmp = array[i];
+                        array[i] = array[j];
+                        array[j] = tmp;
+                    }
+                }
+            }
         }
 
         /// <summary>
