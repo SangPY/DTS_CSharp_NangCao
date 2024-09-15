@@ -180,38 +180,57 @@ namespace DTS_CSharp_NangCap
 
             #region Tạo và sắp xếp Queue
 
-            Queue queue = new Queue();
+            //Queue queue = new Queue();
 
-            // Tạo 1 Queue rỗng
-            Queue MyQueue4 = new Queue();
+            //// Tạo 1 Queue rỗng
+            //Queue MyQueue4 = new Queue();
 
-            // Thực hiện thêm vài phần tử vào Queue thông qua hàm Enqueue.
-            MyQueue4.Enqueue("HowKteam");
-            MyQueue4.Enqueue("Free");
-            MyQueue4.Enqueue("Education");
+            //// Thực hiện thêm vài phần tử vào Queue thông qua hàm Enqueue.
+            //MyQueue4.Enqueue("HowKteam");
+            //MyQueue4.Enqueue("Free");
+            //MyQueue4.Enqueue("Education");
 
-            // Thử sử dụng các phương thức của Queue.
-            Console.WriteLine(" So phan tu hien tai cua Queue la: {0}", MyQueue4.Count);
+            //// Thử sử dụng các phương thức của Queue.
+            //Console.WriteLine(" So phan tu hien tai cua Queue la: {0}", MyQueue4.Count);
 
-            // Lưu ý ở đây ta chỉ muốn xem giá trị mà không muốn nó khỏi Queue thì ta sẽ dùng Peek.
-            Console.WriteLine(" Phan tu dau cua Queue la: {0}", MyQueue4.Peek());
+            //// Lưu ý ở đây ta chỉ muốn xem giá trị mà không muốn nó khỏi Queue thì ta sẽ dùng Peek.
+            //Console.WriteLine(" Phan tu dau cua Queue la: {0}", MyQueue4.Peek());
 
-            // Thử kiểm tra lại số phần tử để chắc chắn rằng hàm Peek không xoá phần tử ra khỏi Queue.
-            Console.WriteLine(" So phan tu cua Queue sau khi goi ham Peek: {0}", MyQueue4.Count);
+            //// Thử kiểm tra lại số phần tử để chắc chắn rằng hàm Peek không xoá phần tử ra khỏi Queue.
+            //Console.WriteLine(" So phan tu cua Queue sau khi goi ham Peek: {0}", MyQueue4.Count);
 
-            // Thực hiện xoá các phần tử ra khỏi Queue thông qua hàm Dequeue.
-            Console.WriteLine(" Popping...");
-            int Length = MyQueue4.Count;
-            for (int i = 0; i < Length; i++)
-            {
-                Console.Write(" " + MyQueue4.Dequeue());
-            }
-            Console.WriteLine();
+            //// Thực hiện xoá các phần tử ra khỏi Queue thông qua hàm Dequeue.
+            //Console.WriteLine(" Popping...");
+            //int Length = MyQueue4.Count;
+            //for (int i = 0; i < Length; i++)
+            //{
+            //    Console.Write(" " + MyQueue4.Dequeue());
+            //}
+            //Console.WriteLine();
 
-            // Kiểm tra lại số phần tử của Queue sau khi Pop
-            Console.WriteLine(" So phan tu cua Queue sau khi Pop la: {0}", MyQueue4.Count);
+            //// Kiểm tra lại số phần tử của Queue sau khi Pop
+            //Console.WriteLine(" So phan tu cua Queue sau khi Pop la: {0}", MyQueue4.Count);
 
             #endregion Tạo và sắp xếp Queue
+
+            #region Khởi tạo BitArray
+
+            /*
+            * Khởi tạo 1 BitArray có 10 phần tử.
+            * Mỗi phần tử có giá trị mặc định 0 (false).
+            */
+            BitArray bitArray = new BitArray(10);
+
+            // Muốn mặc định bằng flase
+            BitArray bitArray1 = new BitArray(10, true);
+
+            /*
+            * Khởi tạo 1 BitArray từ một mảng bool có sẵn.
+            */
+            bool[] mybools = new bool[5] { true, false, true, true, false };
+            BitArray bitArray2 = new BitArray(mybools);
+
+            #endregion Khởi tạo BitArray
         }
 
         public class PersonComparer : IComparer
