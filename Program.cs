@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace DTS_CSharp_NangCap
 {
@@ -255,56 +256,93 @@ namespace DTS_CSharp_NangCap
 
             #region List
 
-            List<string> list = new List<string>();
+            //List<string> list = new List<string>();
 
-            List<int> list2 = new List<int>(5);
+            //List<int> list2 = new List<int>(5);
 
-            /*
-            * Khởi tạo 1 List số nguyên có kích thước bằng với MyList2.
-            * Sao chép toàn độ phần tử trong MyList2 vào MyList3.
-            * Tạo ra vùng nhớ riêng biệt
-            */
-            List<int> list3 = new List<int>(list2);
+            ///*
+            //* Khởi tạo 1 List số nguyên có kích thước bằng với MyList2.
+            //* Sao chép toàn độ phần tử trong MyList2 vào MyList3.
+            //* Tạo ra vùng nhớ riêng biệt
+            //*/
+            //List<int> list3 = new List<int>(list2);
 
-            /*
-            * Tạo 1 List các kiểu string và thêm 2 phần tử vào List.
-            */
-            List<string> list4 = new List<string>();
-            list4.Add("Free");
-            list4.Add("Education");
+            ///*
+            //* Tạo 1 List các kiểu string và thêm 2 phần tử vào List.
+            //*/
+            //List<string> list4 = new List<string>();
+            //list4.Add("Free");
+            //list4.Add("Education");
 
-            // In giá trị các phần tử trong List
-            Console.WriteLine(" List ban dau: ");
-            Console.WriteLine(" So luong phan tu trong List la: {0}", list4.Count);
-            foreach (string item in list4)
-            {
-                Console.Write(" " + item);
-            }
-            Console.WriteLine();
+            //// In giá trị các phần tử trong List
+            //Console.WriteLine(" List ban dau: ");
+            //Console.WriteLine(" So luong phan tu trong List la: {0}", list4.Count);
+            //foreach (string item in list4)
+            //{
+            //    Console.Write(" " + item);
+            //}
+            //Console.WriteLine();
 
-            // Chèn 1 phần tử vào đầu List.
-            list4.Insert(0, "HowKteam");
+            //// Chèn 1 phần tử vào đầu List.
+            //list4.Insert(0, "HowKteam");
 
-            // In lại giá trị các phần tử trong List để xem đã chèn được hay chưa
-            Console.WriteLine(" List sau khi insert: ");
-            Console.WriteLine(" So luong phan tu trong List la: {0}", list4.Count);
-            foreach (string item in list4)
-            {
-                Console.Write(" " + item);
-            }
-            Console.WriteLine();
+            //// In lại giá trị các phần tử trong List để xem đã chèn được hay chưa
+            //Console.WriteLine(" List sau khi insert: ");
+            //Console.WriteLine(" So luong phan tu trong List la: {0}", list4.Count);
+            //foreach (string item in list4)
+            //{
+            //    Console.Write(" " + item);
+            //}
+            //Console.WriteLine();
 
-            // Kiểm tra 1 phần tử có tồn tại trong List hay không.
-            bool isExists = list4.Contains("Kteam");
+            //// Kiểm tra 1 phần tử có tồn tại trong List hay không.
+            //bool isExists = list4.Contains("Kteam");
 
-            if (isExists == false)
-            {
-                Console.WriteLine(" Khong tim thay chuoi Kteam trong List");
-            }
+            //if (isExists == false)
+            //{
+            //    Console.WriteLine(" Khong tim thay chuoi Kteam trong List");
+            //}
 
             //HowKteam là sẽ có -- dùng else để hiển thị
 
             #endregion List
+
+            #region Dictionary
+
+            //Dictionary chính là sự thay thế cho Collections Hashtable đã được học.
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+
+            dic.Add("Sang", "Do thanh sang");
+            dic.Add("An", "Do thanh Hong An");
+            dic.Add("Ngan", "Do vo thanh ngan");
+
+            foreach (KeyValuePair<string, string> item in dic)
+            {
+                Console.WriteLine(item.Key + "\t" + item.Value);
+            }
+
+            // Trùng Key báo lỗi
+
+            /*HASHTABLE
+             * Threadsafe - Hỗ trợ multi threading không đụng độ tài nguyên
+             * Cặp Key - Value lưu kiểu object
+             * Truy xuất phần tử không tồn tại trong Hashtable sẽ không báo lỗi suy ra return null.
+             * Hiệu quả cho dữ liệu lớn
+             * Các phần tử được sắp xếp lại mỗi khi thêm hoặc xóa các phần tử trong Hashtable.
+             * Tìm kiếm nhanh hơn.
+             */
+
+            /*DICTIONARY
+             *
+             * Threadsafe - Không hỗ trợ.
+             * Phải xác định cụ thể kiểu dữ liệu của cặp Key - value
+             * Truy xuất phần tử không tồn tại trong Dictionary sẽ báo lỗi
+             * Không hiệu quả cho dữ liệu lớn
+             * Các phần tử nằm theo thứ tự được thêm vào.
+             * Tìm kiếm chậm hơn.
+             */
+
+            #endregion Dictionary
         }
 
         // Dùng Generic
